@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a39e3a6ebda7d344be55509de3593b6, type: 3}
+  m_Name: ObjectViews
+  m_EditorClassIdentifier: 
+  _records:
+  - Tag: Enemy
+    Sample: {fileID: 1468054360483310638, guid: 5689ea8215972bb4f895761a29586736, type: 3}
+  - Tag: EnemyProjectile
+    Sample: {fileID: 1468054360483310638, guid: 865106c8da4718549b306a5ecc46f789, type: 3}
+  - Tag: Player
+    Sample: {fileID: 1468054360483310638, guid: b3812e5fd25729140a241a0170f44877, type: 3}
+  - Tag: PlayerProjectile
+    Sample: {fileID: 1468054360483310638, guid: 7d55d975fa2877d4f92fd4d128de890d, type: 3}

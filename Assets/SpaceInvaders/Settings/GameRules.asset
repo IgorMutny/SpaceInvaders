@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aecd70eb289c5c4ba20ecb2af8f66ca, type: 3}
+  m_Name: GameRules
+  m_EditorClassIdentifier: 
+  <Levels>k__BackingField:
+  - {fileID: 11400000, guid: 418ef82f178f9f647972a8baeb8abbb7, type: 2}
+  - {fileID: 11400000, guid: af0c279f9cc952644a0837425c1ee966, type: 2}
+  - {fileID: 11400000, guid: ce05efdc711dac64389feff4986ac42d, type: 2}
+  <ScreenSize>k__BackingField: {x: 256, y: 224}
+  <PlayerPosition>k__BackingField: {x: 128, y: 32}
+  <PlayerSpeed>k__BackingField: 100
+  <PlayerReloadTime>k__BackingField: 0.5
+  <ArmyCenter>k__BackingField: {x: 128, y: 168}
+  <DistanceBetweenEnemies>k__BackingField: {x: 16, y: 16}
+  <DescendingDistance>k__BackingField: 8
+  <PlayerProjectileSpeed>k__BackingField: 200
+  <EnemyProjectileSpeed>k__BackingField: 100
