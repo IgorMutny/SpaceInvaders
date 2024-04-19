@@ -5,13 +5,12 @@ namespace SpaceInvaders
     public class ArmyMovement
     {
         private Timer _timer;
-        private TimerSignal _strafingSignal;
-
         private Enemy[,] _enemies;
         private LevelInfo _info;
         private GameRules _rules;
 
         private int _direction;
+        private float _speed;
 
         public ArmyMovement(Enemy[,] enemies, LevelInfo info)
         {
@@ -21,38 +20,27 @@ namespace SpaceInvaders
             _timer = ServiceLocator.Get<Timer>();
             _rules = ServiceLocator.Get<GameRules>();
             _direction = 1;
+            _timer.Tick += OnTick;
 
-            CreateStrafingSignal();
-        }
 
-        public void CreateStrafingSignal()
-        {
-            if (_strafingSignal != null)
-            {
-                _timer.RemoveSignal(_strafingSignal);
-                _strafingSignal = null;
-            }
-
-            float period = GetStrafePeriod();
-            _strafingSignal = _timer.AddSignal(period, Move, true);
+            SetSpeed();
         }
 
         public void Destroy()
         {
-            _timer.RemoveSignal(_strafingSignal);
-            _strafingSignal = null;
+            _timer.Tick -= OnTick;
         }
 
-        private void Move()
+        private void OnTick()
         {
             bool hasEnemies = false;
 
-            foreach (Enemy enemy in _enemies)
+            foreach (var enemy in _enemies)
             {
                 if (enemy != null && enemy.IsActive == true)
                 {
-                    enemy.Position += Vector2Int.right * _direction;
                     hasEnemies = true;
+                    enemy.Position += Vector2.right * _direction * _speed * Time.fixedDeltaTime;
                 }
             }
 
@@ -62,21 +50,22 @@ namespace SpaceInvaders
             }
         }
 
-        private float GetStrafePeriod()
+        public void SetSpeed()
         {
             Enemy firstEnemy = GetFirstEnemy();
             Enemy lastEnemy = GetLastEnemy();
 
-            if (firstEnemy == null || lastEnemy == null)
+            if (firstEnemy != null && lastEnemy != null)
             {
-                return 0;
+                float armyWidth =
+                    lastEnemy.Position.x - firstEnemy.Position.x + firstEnemy.Size.x;
+
+                _speed = (_rules.ScreenSize.x - armyWidth) / _info.DescendingInterval;
             }
-
-            float armyWidth =
-                lastEnemy.Position.x - firstEnemy.Position.x + firstEnemy.Size.x;
-
-            float result = _info.DescendingInterval / (_rules.ScreenSize.x - armyWidth);
-            return result;
+            else
+            {
+                _speed = 0;
+            }
         }
 
         private void CheckBoundsReached()
@@ -91,7 +80,7 @@ namespace SpaceInvaders
 
             if (headEnemy != null && headEnemy.IsOutOfBounds() == true)
             {
-                _direction = - _direction;
+                _direction = -_direction;
                 Descend();
             }
         }

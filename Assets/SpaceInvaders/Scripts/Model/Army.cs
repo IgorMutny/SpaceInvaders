@@ -41,7 +41,7 @@ namespace SpaceInvaders
 
         private void OnEnemyDestroyed()
         {
-            _movement.CreateStrafingSignal();
+            _movement.SetSpeed();
 
             foreach (Enemy enemy in _enemies)
             { 
